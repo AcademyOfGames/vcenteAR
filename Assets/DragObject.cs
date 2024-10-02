@@ -6,8 +6,10 @@ public class DragObject : MonoBehaviour
     private bool isDragging = false;
     private Vector3 offset;
     Transform objTransform;
+    [SerializeField] private Transform targetTransform;
 
     Action inputCheck;
+    private float initialCamToTreeDist;
 
     private void Start()
     {
@@ -20,10 +22,12 @@ public class DragObject : MonoBehaviour
     }
     private void PcInput()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-
+        Vector3 mousePos = Vector3.zero;
         if (Input.GetMouseButtonDown(0))
         {
+            initialCamToTreeDist = (targetTransform.position - Camera.main.transform.position).magnitude;
+           mousePos= Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, initialCamToTreeDist));
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -41,11 +45,13 @@ public class DragObject : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
+            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, initialCamToTreeDist));
+
             if (isDragging)
             {
                 // Update the GameObject's position while dragging
                 Vector3 newPosition = mousePos + offset;
-                newPosition.z = objTransform.position.z;  // Maintain the original Z position
+                //newPosition.z = objTransform.position.z;  // Maintain the original Z position
                 objTransform.position = newPosition;
             }
         }

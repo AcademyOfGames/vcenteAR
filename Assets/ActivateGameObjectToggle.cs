@@ -15,8 +15,7 @@ public class ActivateGameObjectToggle : MonoBehaviour
     {
         btn = GetComponent<Button>();
 
-
-                  // Check if the button is assigned
+        // Check if the button is assigned
         if (btn != null)
         {
             // Subscribe to the button's onClick event
