@@ -9,6 +9,7 @@ public class EnvironmentBehavior : MonoBehaviour
     public float waterChangeRate = 0.01f;
     private void OnParticleCollision(GameObject other)
     {
+        print("hitting " + other.name);
         if(other.tag == "water")
         {
             FillWater();

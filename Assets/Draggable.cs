@@ -11,7 +11,7 @@ public class Draggable : MonoBehaviour
 
     public void ActivateDragObject()
     {
-        print("Playing rotate vase");
+        print("Powering anim");
         anim.Play("vasePouring");
         isDragging = true;
     }

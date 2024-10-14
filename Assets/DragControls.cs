@@ -45,11 +45,14 @@ public class DragControls : MonoBehaviour
     private void DragCheck()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        print("Drag check");
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
+            print("Hit " + hit.collider.name);  
             dragObject = hit.collider.GetComponent<Draggable>();
             if (dragObject == null) return;
+            print("Hit has dragobject");
+
             StartDragging(hit);
         }
     }
