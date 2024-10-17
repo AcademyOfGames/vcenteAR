@@ -48,12 +48,21 @@ public class DragControls : MonoBehaviour
         print("Drag check");
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            print("Hit " + hit.collider.name);  
             dragObject = hit.collider.GetComponent<Draggable>();
-            if (dragObject == null) return;
-            print("Hit has dragobject");
+            if (dragObject != null)
+            {
+                print("Hit has dragobject");
+                StartDragging(hit);
+                return;
+            }
 
-            StartDragging(hit);
+            //eventually this will be parent class with some sort of button on click funcion I can override
+            UrlButton urlButton = hit.collider.GetComponent<UrlButton>();
+            if (urlButton != null)
+            {
+                urlButton.GoToURL();
+            }
+
         }
     }
 
