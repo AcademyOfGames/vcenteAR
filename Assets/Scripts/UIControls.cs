@@ -1,14 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIControls : MonoBehaviour
 {
     [SerializeField] GameObject cubeUI1;
     [SerializeField] GameObject cubeUI2;
+    [SerializeField] GameObject waterButton;
 
     private static UIControls _instance;
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+
+    }
+
+
 
     public static UIControls Instance { get { return _instance; } }
 
@@ -20,6 +32,8 @@ public class UIControls : MonoBehaviour
 
     private void Awake()
     {
+
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);

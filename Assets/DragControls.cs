@@ -60,6 +60,7 @@ public class DragControls : MonoBehaviour
     private void StartDragging(RaycastHit hit)
     {
         objTransform = hit.transform;
+        objTransform.parent = Camera.main.transform;
 
         // Start dragging
         dragObject.ActivateDragObject();
